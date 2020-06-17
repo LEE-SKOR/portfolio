@@ -140,13 +140,15 @@ WHERE ename LIKE 'K%' OR deptno = 30;
 -- 연습문제 28
 SELECT *
 FROM emp
-WHERE sal > 1500 AND deptno = 30 AND job = 'MANAGER';
+WHERE sal > 1500
+AND deptno = 30 
+AND job = 'MANAGER';
 
 -- 연습문제 29
 SELECT *
 FROM emp
 WHERE deptno = 30
-ORDER BY deptno DESC;
+ORDER BY deptno;
 
 -- 연습문제 30
 SELECT *
@@ -174,14 +176,40 @@ FROM emp
 ORDER BY total DESC;
 
 -- 연습문제 35
-SELECT ename, sal, TO_CHAR (ROUND (sal*0.15,1), '$999,999.9') 회비
+SELECT ename, sal, TO_CHAR (ROUND (sal*0.15,1), '$999.9') 회비
 FROM emp
 WHERE sal BETWEEN 1500 AND 3000;
 
 -- 연습문제 36
-SELECT count(*)
-FROM emp
---JOIN dept d ON d.dname = e.dname
---GROUP BY dname;
+SELECT d.dname,count(e.empno)
+FROM emp e
+JOIN dept d ON e.deptno = d.deptno
+GROUP BY d.dname
+HAVING COUNT(e.empno) > 5;
 
 -- 연습문제 37
+SELECT job, SUM(sal) 급여합계
+FROM emp
+WHERE job != 'SALESMAN'
+GROUP BY job
+HAVING SUM(sal) > 5000;
+
+-- 연습문제 38
+SELECT e.empno, e.ename, e.sal, s.grade
+FROM emp e
+JOIN salgrade s
+ON e.sal BETWEEN s.losal AND s.hisal;
+
+-- 연습문제 39
+SELECT deptno, COUNT(*) AS "사원 수",
+COUNT(comm) AS "커미션 받은 사원수"
+FROM emp
+GROUP BY deptno;
+
+-- 연습문제 40
+SELECT ename, deptno,
+        decode(deptno, 10, '총무부',
+                       20, '개발부',
+                       30, '영업부'
+                        ) 부서명
+FROM emp;
