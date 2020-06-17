@@ -20,5 +20,5 @@
    ### 이미지
    ![Alt text](https://images.unsplash.com/photo-1592244787087-a6f76371cb63?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60)
 
-   ![Alt text](img/1.png)
+   ![Alt text](img/1.PNG)
    
