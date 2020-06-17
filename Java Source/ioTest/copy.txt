@@ -1,0 +1,39 @@
+1 package ioTest;
+2 
+3 import java.io.Serializable;
+4 
+5 public class Friend implements Serializable{
+6 
+7 		private String name;
+8 		private String birth;
+9 		private String addr;
+10 		private String tel;
+11 		//getter,setter »ý¼º
+12 		
+13 		public String getName() {
+14 			return name;
+15 		}
+16 		public String getBirth() {
+17 			return birth;
+18 		}
+19 		public String getAddr() {
+20 			return addr;
+21 		}
+22 		public String getTel() {
+23 			return tel;
+24 		}
+25 		public void setName(String name) {
+26 			this.name = name;
+27 		}
+28 		public void setBirth(String birth) {
+29 			this.birth = birth;
+30 		}
+31 		public void setAddr(String addr) {
+32 			this.addr = addr;
+33 		}
+34 		public void setTel(String tel) {
+35 			this.tel = tel;
+36 		}
+37 		
+38 		
+39 }
