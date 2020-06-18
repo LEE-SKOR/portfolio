@@ -1,0 +1,22 @@
+-- 예제 1
+SELECT last_name, salary
+FROM employees
+WHERE salary > ( SELECT salary from employees 
+                 WHERE last_name = 'Abel' ) ;
+-- 예제 2
+SELECT employee_id 직원번호, last_name 이름,
+        department_id 부서번호, salary 급여
+FROM employees
+WHERE salary > ( SELECT salary from employees 
+                  WHERE last_name = 'Bull' ) 
+AND    department_id = ( SELECT department_id from employees 
+                         WHERE last_name = 'Bull' ) ;
+-- 예제 3
+SELECT last_name 이름, salary 급여, manager_id
+FROM employees
+WHERE manager_id = ( SELECT employee_id from employees WHERE last_name = 'Russell' ) ;
+-- 예제 4
+SELECT *
+FROM employees
+WHERE job_id = ( SELECT job_id from jobs WHERE job_title = 'Stock Manager' );               
+                 
