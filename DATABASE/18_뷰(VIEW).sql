@@ -54,9 +54,36 @@ VALUES ( 334, 'LaLa', 'LALA', SYSDATE, 'IT_PROG');
 CREATE or REPLACE VIEW 부서별_직원_보고서
 AS
 SELECT department_id 부서번호, COUNT(employee_id) 직원수,
-    MAX(salary) 최고급여, MIN(salary) 최저급여
+    MAX(salary) 최고급여, MIN(salary) 최저급여, ROUND(AVG(salary)) 평균급여
 FROM employees
 GROUP BY department_id
 ORDER BY "부서번호";
 
 SELECT * FROM 부서별_직원_보고서 ;
+
+-- 읽기 전용 뷰 (옵션 with READ ONLY)
+CREATE or REPLACE VIEW EMP_V_read
+AS 
+SELECT employee_id, last_name, email, hire_date, job_id
+FROM employees
+WHERE department_id = 90
+WITH READ ONLY; -- 읽기 전용
+
+SELECT * FROM emp_v_read;
+
+-- DML 사용 불가
+DELETE FROM emp_v_read; -- 읽기만 가능(READ ONLY)
+
+-- 체크 옵션 뷰
+CREATE or REPLACE VIEW emp_v_check
+AS
+SELECT employee_id, last_name, email, hire_date, job_id, department_id
+FROM employees
+WHERE department_id = 90
+WITH check option; --WHERE 절의 조건에서만 수정 및 입력 가능
+
+SELECT * FROM emp_v_check;
+
+-- 90번 부서 일때만 DML 가능
+INSERT INTO emp_v_check (employee_id, last_name, email, hire_date, job_id, department_id)
+VALUES (444, '알리', 'ALI', SYSDATE, 'IT_PROG', 90);
