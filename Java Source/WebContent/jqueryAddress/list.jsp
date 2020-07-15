@@ -8,10 +8,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" 
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" 
-	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" 
-	crossorigin="anonymous">
 <style>
 div.divCss{
 	text-align:right;
@@ -26,22 +22,6 @@ td,th{text-align : center}
 </style>
 </head>
 <script src = "https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script>
-function searchCheck(){
-	if($("#word").val()==""){
-		alert("검색어를 입력하세요");
-		$("#word").focus();
-		return false;
-	}
-	$("#searchFrm").submit();
-}
-
-function delFunc(no){
-	if(confirm("정말 삭제할까요?")){
-		location.href = "deletePro.jsp?num="+no;
-	}
-}
-</script>
 <%
 	request.setCharacterEncoding("utf-8");
 	String word = "";
@@ -56,18 +36,15 @@ function delFunc(no){
 %>
 <body>
 <div class = "divCss">
-	주소록 갯수 : <%=count %><br>
 	<a href = "insert.jsp"> 추가하기</a>
-	<a href = "list.jsp"> 전체보기</a>
 </div>
 <table class="table table-striped table-dark">
         <thead>
           <tr>
-            <th scope="col">번호</th>
-            <th scope="col">이름</th>
-            <th scope="col">전화번호</th>
-            <th scope="col">주소</th>
-            <th scope="col">삭제</th>
+            <th>번호</th>
+            <th>이름</th>
+            <th>전화번호</th>
+            <th>주소</th>
           </tr>
         </thead>
 	<tbody>
@@ -79,20 +56,11 @@ for(int i=0; i<arr.size(); i++){
 		<td><a href="detail.jsp?num=<%=arr.get(i).getNum() %>"><%=arr.get(i).getName() %></a></td>
 		<td><%=arr.get(i).getTel() %></td>
 		<td><%=arr.get(i).getAddr() %></td>
-		<td onclick = "delFunc(<%=arr.get(i).getNum()%>)">삭제</td>
 	</tr>
 <%
 }
 %>		
 </tbody>
 </table>
-<form action = "list.jsp" name = "searchFrm" id = "searchFrm">
-<select name = "field">
-	<option value = "name">이름</option>
-	<option value = "tel">전화번호</option>
-</select>
-	<input type = "text" name = "word" id = "word">
-	<input type = "button" value = "검색" class="btn btn-primary" onclick = "searchCheck()">
-</form>
 </body>
 </html>

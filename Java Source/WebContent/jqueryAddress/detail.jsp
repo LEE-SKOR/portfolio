@@ -7,10 +7,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" 
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" 
-	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" 
-	crossorigin="anonymous">
 <script src = "https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <%
 	request.setCharacterEncoding("utf-8");
@@ -21,27 +17,12 @@
 %>
 <script>
 //query이용
-$(document).ready(function(){
-	$("#deleteBtn").click(function(){
-		if(confirm("정말 삭제할까요?")){
-			//location.href = "deletePro.jsp?num=<%=num%>";
-			$(location).attr("href","deletePro.jsp?num=<%=num%>");
-		}
-	});		
-});
 //삭제
 function del(){
 	if(confirm("정말 삭제할까요?")){
 		location.href = "deletePro.jsp?num=<%=num%>";
 	}
 }
-//매개변수 있는 함수
-function dels(no){
-	if(confirm("정말 삭제할까요?")){
-		location.href = "deletePro.jsp?num="+no;
-	}
-}
-
 function zipfinder() {
 	window.open("zipCheck.jsp"," ","width = 700 height = 400")
 }
@@ -52,7 +33,7 @@ function zipfinder() {
 <input type = "hidden" name = "num" value = <%=num %>>
 <table>
 	<tr>
-		<td colspan = "2">주소록 등록하기<br></td>
+		<h3>수정하기</h3>
 	</tr>
 	<tr>
 		<td>이름</td>
@@ -61,7 +42,7 @@ function zipfinder() {
 	<tr>
 		<td>우편번호</td>
 		<td> <input type = "text" name = "zipcode" value = "<%=address.getZipcode()%>">
-		<input type = "button" value = "검색" onclick = "zipfinder()" class="btn btn-primary"></td>
+		<input type = "button" value = "검색" onclick = "zipfinder()"></td>
 	</tr>
 	<tr>
 		<td>주소</td>
@@ -73,11 +54,9 @@ function zipfinder() {
 	</tr>
 	<tr>
 			<td  colspan = "2">
-			<input type = "submit" value ="수정" class="btn btn-primary">
-			<input type = "button" value = "삭제" onclick = "del()" class="btn btn-secondary">
-			<input type = "button" value = "매개변수삭제" onclick = "dels(<%=num%>)"  class="btn btn-success">
-			<input type = "button" value = "jquery삭제" id = "deleteBtn" class="btn btn-danger">
-			<input type = "reset" value = "취소" class="btn btn-warning"></td>
+			<input type = "submit" value ="수정">
+			<input type = "button" value = "삭제" onclick = "del()">
+			<input type = "reset" value = "취소"></td>
 	</tr>
 </table>
 </form>
